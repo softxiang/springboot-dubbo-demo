@@ -2,10 +2,7 @@ package com.demo.springboot.dubbo.service.test;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.demo.springboot.dubbo.entity.TestEntity;
-import com.demo.springboot.dubbo.service.IAService;
-import com.demo.springboot.dubbo.service.IBService;
-import com.demo.springboot.dubbo.service.ICService;
-import com.demo.springboot.dubbo.service.ITestService;
+import com.demo.springboot.dubbo.service.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +17,8 @@ public class SpringbootDubboDemoApplicationTests {
     private ITestService testService;
     @Autowired
     private ICService icService;
+    @Autowired
+    private IDService idService;
 
     @Reference(group = "test", version = "1.0.0")
     private IAService iaService;
@@ -51,11 +50,24 @@ public class SpringbootDubboDemoApplicationTests {
 
     @Test
     public void  testC(){
+        System.out.println("testc start....");
         try {
             icService.test("ccc");
         }catch (Exception e){
             e.printStackTrace();
         }
+        try {
+            idService.test("ddd");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
-
+    @Test
+    public void  testC1(){
+        try {
+            icService.test1("ccc");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

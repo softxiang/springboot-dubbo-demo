@@ -16,6 +16,7 @@ public class AServiceImpl implements IAService {
     @Autowired
     private ITestService testService;
 
+    //@Reference(group = "test", version = "1.0.0",check = false)
     @Autowired
     private IBService bService;
     @Override

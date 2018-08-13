@@ -1,31 +1,30 @@
 package com.demo.springboot.dubbo.service.impl;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.demo.springboot.dubbo.entity.TestEntity;
-import com.demo.springboot.dubbo.service.IAService;
-import com.demo.springboot.dubbo.service.IBService;
+import com.demo.springboot.dubbo.service.ICService;
+import com.demo.springboot.dubbo.service.IDService;
 import com.demo.springboot.dubbo.service.ITestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 
-@Service(interfaceClass=IBService.class,group="test",version="1.0.0")
+@Service
 @Transactional
-public class BServiceImpl implements IBService {
+public class DServiceImpl implements IDService {
     @Autowired
     private ITestService testService;
 
-    //@Reference(group = "test", version = "1.0.0",check = false)
     @Autowired
-    private IAService aService;//相互引用，但实际并未使用
+    private ICService icService;
     @Override
     public void test(String string) {
         TestEntity testEntity = new TestEntity();
-        testEntity.setTest("B-"+string);
+        testEntity.setTest("D-"+string);
         testEntity = testService.save(testEntity);
         if(!Objects.isNull(testEntity.getId())){
-            throw new RuntimeException("BService test...b....");
+            throw new RuntimeException("DService test....a...");
         }
     }
 }

@@ -1,7 +1,5 @@
 package com.demo.springboot.dubbo.service;
 
-public interface ICService {
+public interface IDService {
     void test(String string);
-
-    void test1(String string);
 }
